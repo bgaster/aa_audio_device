@@ -1,0 +1,6 @@
+build
+*.app
+Builds
+JuceLibraryCode
+Source
+druid
