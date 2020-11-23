@@ -32,16 +32,18 @@ include_directories(
 )
 
 # Setup the AA static library
-SET( AA_JUCE aaJUCE)
+SET( AA_LIB  aa)
 
-ADD_LIBRARY( ${AA_JUCE} STATIC
+ADD_LIBRARY( ${AA_LIB} STATIC
              src/lib.cpp
              include/aa_types.h
              include/aa.h
              include/global.hpp )
 
 # Include the JSON library 
-target_link_libraries(${AA_JUCE} PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(${AA_LIB} 
+                      ${JUCE_LIB}
+                      nlohmann_json::nlohmann_json)
 
 # Setup examples
 
@@ -86,10 +88,8 @@ endif()
             
 # Link our test app
 TARGET_LINK_LIBRARIES( ${INFO_EXE}
-                       ${AA_JUCE}
-                       ${JUCE_LIB}
+                       ${AA_LIB}
                        nlohmann_json::nlohmann_json)
 
 TARGET_LINK_LIBRARIES( ${SINE_EXE}
-                       ${AA_JUCE}
-                       ${JUCE_LIB})
+                       ${AA_LIB})
